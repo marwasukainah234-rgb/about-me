@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About Me | Marwa</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* =========================
+           RESET
+        ========================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --black: #070707;
+            --black-soft: #101010;
+            --card: #151515;
+            --red: #e50914;
+            --red-dark: #a80710;
+            --white: #ffffff;
+            --gray: #a6a6a6;
+            --border: rgba(255,255,255,0.08);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--black);
+            color: var(--white);
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* =========================
+           SCROLL PROGRESS
+        ========================== */
+
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            width: 0%;
+            background: var(--red);
+            z-index: 9999;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================== */
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(7,7,7,0.75);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: auto;
+            height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 25px;
+        }
+
+        .logo {
+            font-size: 23px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--red);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #bbb;
+            font-size: 14px;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: white;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--red);
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .menu-btn {
+            display: none;
+            font-size: 27px;
+            cursor: pointer;
+        }
+
+        /* =========================
+           GENERAL
+        ========================== */
+
+        section {
+            max-width: 1200px;
+            margin: auto;
+            padding: 110px 25px;
+        }
+
+        .section-title {
+            margin-bottom: 50px;
+        }
+
+        .section-title small {
+            color: var(--red);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 3px;
+        }
+
+        .section-title h2 {
+            font-size: clamp(32px, 5vw, 48px);
+            margin-top: 8px;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin-top: 12px;
+        }
+
+        /* =========================
+           HERO
+        ========================== */
+
+        #home {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero {
+            max-width: 1200px;
+            width: 100%;
+            margin: auto;
+            padding: 130px 25px 80px;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .hero-text small {
+            color: var(--red);
+            font-weight: 700;
+            letter-spacing: 3px;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(48px, 8vw, 90px);
+            line-height: 1;
+            margin: 15px 0;
+        }
+
+        .hero-text h1 span {
+            color: var(--red);
+        }
+
+        .typing {
+            color: #ddd;
+            font-size: 20px;
+            min-height: 32px;
+        }
+
+        .cursor {
+            color: var(--red);
+            animation: blink 0.8s infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .hero-description {
+            color: var(--gray);
+            line-height: 1.8;
+            max-width: 570px;
+            margin: 20px 0 30px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 13px 23px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: 0.3s;
+            border: 1px solid var(--border);
+        }
+
+        .btn-primary {
+            background: var(--red);
+        }
+
+        .btn-primary:hover {
+            background: #ff1824;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(229,9,20,0.25);
+        }
+
+        .btn-outline {
+            color: white;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--red);
+            color: var(--red);
+        }
+
+        /* PROFILE CARD */
+
+        .profile-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .profile-card {
+            width: 320px;
+            height: 400px;
+            border-radius: 25px;
+            background:
+                linear-gradient(145deg, #191919, #090909);
+            border: 1px solid rgba(229,9,20,0.25);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow:
+                0 0 80px rgba(229,9,20,0.12);
+            animation: floating 4s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+        .profile-circle {
+            width: 210px;
+            height: 210px;
+            border-radius: 50%;
+            border: 2px solid var(--red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 70px;
+            font-weight: 800;
+            color: var(--red);
+            box-shadow: 0 0 50px rgba(229,9,20,0.25);
+        }
+
+        .profile-name {
+            position: absolute;
+            bottom: 30px;
+            text-align: center;
+        }
+
+        .profile-name h3 {
+            font-size: 24px;
+        }
+
+        .profile-name p {
+            color: var(--gray);
+            font-size: 13px;
+        }
+
+        /* =========================
+           ABOUT
+        ========================== */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-box {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-box::before {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: var(--red);
+            filter: blur(70px);
+            opacity: 0.15;
+            top: -40px;
+            left: -40px;
+        }
+
+        .about-box h3 {
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        .about-box p {
+            color: var(--gray);
+            line-height: 1.9;
+            font-size: 14px;
+        }
+
+        .info-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .info-item {
+            padding: 18px;
+            border-radius: 12px;
+            background: #101010;
+            border: 1px solid var(--border);
+        }
+
+        .info-item span {
+            display: block;
+            color: var(--red);
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .info-item strong {
+            font-size: 14px;
+        }
+
+        /* =========================
+           HOBBIES
+        ========================== */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 25px;
+            transition: 0.35s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(229,9,20,0.5);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(229,9,20,0.1);
+            color: var(--red);
+            font-size: 23px;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            font-size: 17px;
+            margin-bottom: 8px;
+        }
+
+        .card p {
+            color: var(--gray);
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        /* =========================
+           SKILLS
+        ========================== */
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .skill {
+            margin-bottom: 25px;
+        }
+
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 9px;
+            font-size: 14px;
+        }
+
+        .skill-info span:last-child {
+            color: var(--red);
+        }
+
+        .skill-bar {
+            height: 7px;
+            background: #242424;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: var(--red);
+            width: 0;
+            border-radius: 10px;
+            transition: width 1.5s ease;
+        }
+
+        /* =========================
+           GOALS
+        ========================== */
+
+        .goals {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .goal {
+            padding: 30px;
+            background: linear-gradient(145deg, #171717, #0d0d0d);
+            border-radius: 18px;
+            border: 1px solid var(--border);
+        }
+
+        .goal-number {
+            font-size: 40px;
+            font-weight: 800;
+            color: rgba(229,9,20,0.25);
+        }
+
+        .goal h3 {
+            margin: 10px 0;
+        }
+
+        .goal p {
+            color: var(--gray);
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        /* =========================
+           FUN FACTS
+        ========================== */
+
+        .facts {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .fact {
+            text-align: center;
+            padding: 25px 15px;
+            background: var(--card);
+            border-radius: 15px;
+            border: 1px solid var(--border);
+        }
+
+        .fact-icon {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .fact p {
+            font-size: 13px;
+            color: var(--gray);
+        }
+
+        /* =========================
+           CONTACT
+        ========================== */
+
+        .contact {
+            text-align: center;
+            background:
+                radial-gradient(circle at center,
+                rgba(229,9,20,0.12),
+                transparent 50%);
+            border-radius: 25px;
+            padding: 80px 30px;
+        }
+
+        .contact h2 {
+            font-size: clamp(35px, 6vw, 60px);
+        }
+
+        .contact p {
+            color: var(--gray);
+            max-width: 550px;
+            margin: 15px auto 30px;
+            line-height: 1.8;
+        }
+
+        .socials {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .social {
+            width: 45px;
+            height: 45px;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+
+        .social:hover {
+            background: var(--red);
+            border-color: var(--red);
+            transform: translateY(-4px);
+        }
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid var(--border);
+        }
+
+        footer span {
+            color: var(--red);
+        }
+
+        /* =========================
+           SCROLL ANIMATION
+        ========================== */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: 0.8s ease;
+        }
+
+        .reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================== */
+
+        @media (max-width: 900px) {
+
+            .hero,
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                text-align: center;
+            }
+
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .buttons {
+                justify-content: center;
+            }
+
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .goals {
+                grid-template-columns: 1fr;
+            }
+
+            .facts {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            nav {
+                height: 65px;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 65px;
+                right: 20px;
+                width: 210px;
+                background: #111;
+                border: 1px solid var(--border);
+                border-radius: 12px;
+                padding: 20px;
+                display: none;
+                flex-direction: column;
+                gap: 18px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hero {
+                padding-top: 130px;
+            }
+
+            .profile-card {
+                width: 280px;
+                height: 350px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .info-list {
+                grid-template-columns: 1fr;
+            }
+
+            .facts {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            section {
+                padding: 80px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- SCROLL PROGRESS -->
+    <div class="scroll-progress" id="progress"></div>
+
+    <!-- NAVBAR -->
+    <header>
+        <nav>
+            <a href="#home" class="logo">MAR<span>WA.</span></a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#hobbies">Hobbies</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#goals">Goals</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+            <div class="menu-btn" id="menuBtn">☰</div>
+        </nav>
+    </header>
+
+
+    <!-- =========================
+         HOME
+    ========================== -->
+
+    <section id="home">
+
+        <div class="hero">
+
+            <div class="hero-text reveal">
+
+                <small>WELCOME TO MY WEBSITE</small>
+
+                <h1>
+                    Hi, I'm <span>Marwa.</span>
+                </h1>
+
+                <div class="typing">
+                    I'm a <span id="typingText"></span><span class="cursor">|</span>
+                </div>
+
+                <p class="hero-description">
+                    Selamat datang di website pribadi saya.
+                    Di sini kamu bisa mengenal saya lebih jauh,
+                    mulai dari kepribadian, hobi, kemampuan,
+                    hingga impian yang ingin saya capai.
+                </p>
+
+                <div class="buttons">
+                    <a href="#about" class="btn btn-primary">
+                        Explore About Me
+                    </a>
+
+                    <a href="#contact" class="btn btn-outline">
+                        Contact Me
+                    </a>
+                </div>
+
+            </div>
+
+
+            <div class="profile-container reveal">
+
+                <div class="profile-card">
+
+                    <div class="profile-circle">
+                        M
+                    </div>
+
+                    <div class="profile-name">
+                        <h3>Marwa</h3>
+                        <p>Student • Dreamer • Explorer</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         ABOUT
+    ========================== -->
+
+    <section id="about">
+
+        <div class="section-title reveal">
+            <small>01 — ABOUT ME</small>
+            <h2>Get to know me.</h2>
+            <p>
+                Sedikit cerita tentang siapa saya,
+                apa yang saya sukai, dan bagaimana saya
+                terus berkembang.
+            </p>
+        </div>
+
+
+        <div class="about-grid">
+
+            <div class="about-box reveal">
+
+                <h3>Hello! 👋</h3>
+
+                <p>
+                    Saya Marwa, seorang pelajar yang sedang
+                    menjalani perjalanan baru di jenjang SMA.
+                    Saya senang mencoba hal-hal baru,
+                    bertemu dengan orang baru, dan
+                    mengembangkan kemampuan yang saya miliki.
+                </p>
+
+                <p style="margin-top:15px;">
+                    Bagi saya, setiap pengalaman adalah
+                    kesempatan untuk belajar dan menjadi
+                    versi diri yang lebih baik.
+                </p>
+
+            </div>
+
+
+            <div class="about-box reveal">
+
+                <h3>Personal Info</h3>
+
+                <div class="info-list">
+
+                    <div class="info-item">
+                        <span>NAME</span>
+                        <strong>Marwa</strong>
+                    </div>
+
+                    <div class="info-item">
+                        <span>ROLE</span>
+                        <strong>Student</strong>
+                    </div>
+
+                    <div class="info-item">
+                        <span>SCHOOL</span>
+                        <strong>SMA Negeri 19 Bandung</strong>
+                    </div>
+
+                    <div class="info-item">
+                        <span>INTEREST</span>
+                        <strong>Sport & Creativity</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         HOBBIES
+    ========================== -->
+
+    <section id="hobbies">
+
+        <div class="section-title reveal">
+            <small>02 — MY HOBBIES</small>
+            <h2>Things I enjoy.</h2>
+            <p>
+                Beberapa aktivitas yang membuat saya
+                senang dan membantu saya berkembang.
+            </p>
+        </div>
+
+
+        <div class="cards">
+
+            <div class="card reveal">
+                <div class="icon">⚽</div>
+                <h3>Futsal</h3>
+                <p>
+                    Melatih kerja sama tim, disiplin,
+                    dan tetap aktif.
+                </p>
+            </div>
+
+            <div class="card reveal">
+                <div class="icon">🏀</div>
+                <h3>Basket</h3>
+                <p>
+                    Aktivitas yang menyenangkan sekaligus
+                    melatih fokus dan teamwork.
+                </p>
+            </div>
+
+            <div class="card reveal">
+                <div class="icon">💃</div>
+                <h3>Dance</h3>
+                <p>
+                    Menjadi salah satu cara untuk
+                    mengekspresikan kreativitas.
+                </p>
+            </div>
+
+            <div class="card reveal">
+                <div class="icon">🎧</div>
+                <h3>Music</h3>
+                <p>
+                    Mendengarkan musik ketika sedang
+                    santai atau mengerjakan sesuatu.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         SKILLS
+    ========================== -->
+
+    <section id="skills">
+
+        <div class="section-title reveal">
+            <small>03 — MY SKILLS</small>
+            <h2>What I'm learning.</h2>
+            <p>
+                Kemampuan yang saya miliki dan terus
+                saya kembangkan.
+            </p>
+        </div>
+
+
+        <div class="skills-grid">
+
+            <div class="reveal">
+
+                <div class="skill">
+                    <div class="skill-info">
+                        <span>Teamwork</span>
+                        <span>85%</span>
+                    </div>
+
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="85%"></div>
+                    </div>
+                </div>
+
+
+                <div class="skill">
+                    <div class="skill-info">
+                        <span>Creativity</span>
+                        <span>80%</span>
+                    </div>
+
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="80%"></div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="reveal">
+
+                <div class="skill">
+                    <div class="skill-info">
+                        <span>Communication</span>
+                        <span>75%</span>
+                    </div>
+
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="75%"></div>
+                    </div>
+                </div>
+
+
+                <div class="skill">
+                    <div class="skill-info">
+                        <span>Public Speaking</span>
+                        <span>70%</span>
+                    </div>
+
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="70%"></div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         GOALS
+    ========================== -->
+
+    <section id="goals">
+
+        <div class="section-title reveal">
+            <small>04 — MY GOALS</small>
+            <h2>Where I'm going.</h2>
+            <p>
+                Beberapa hal yang ingin saya capai
+                dalam perjalanan saya ke depan.
+            </p>
+        </div>
+
+
+        <div class="goals">
+
+            <div class="goal reveal">
+                <div class="goal-number">01</div>
+
+                <h3>Academic</h3>
+
+                <p>
+                    Terus meningkatkan kemampuan belajar
+                    dan mendapatkan hasil yang lebih baik
+                    di sekolah.
+                </p>
+            </div>
+
+
+            <div class="goal reveal">
+                <div class="goal-number">02</div>
+
+                <h3>Experience</h3>
+
+                <p>
+                    Aktif mengikuti kegiatan sekolah,
+                    organisasi, dan berbagai pengalaman
+                    baru.
+                </p>
+            </div>
+
+
+            <div class="goal reveal">
+                <div class="goal-number">03</div>
+
+                <h3>Future</h3>
+
+                <p>
+                    Mengembangkan diri dan mempersiapkan
+                    masa depan sesuai dengan cita-cita.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FUN FACTS
+    ========================== -->
+
+    <section>
+
+        <div class="section-title reveal">
+            <small>05 — FUN FACTS</small>
+            <h2>A little more about me.</h2>
+        </div>
+
+
+        <div class="facts">
+
+            <div class="fact reveal">
+                <div class="fact-icon">⚽</div>
+                <p>Suka olahraga</p>
+            </div>
+
+            <div class="fact reveal">
+                <div class="fact-icon">🎵</div>
+                <p>Suka mendengarkan musik</p>
+            </div>
+
+            <div class="fact reveal">
+                <div class="fact-icon">🌱</div>
+                <p>Suka mencoba hal baru</p>
+            </div>
+
+            <div class="fact reveal">
+                <div class="fact-icon">📸</div>
+                <p>Suka mengabadikan momen</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         CONTACT
+    ========================== -->
+
+    <section id="contact">
+
+        <div class="contact reveal">
+
+            <small style="color:var(--red);letter-spacing:3px;">
+                06 — CONTACT
+            </small>
+
+            <h2>Let's connect.</h2>
+
+            <p>
+                Terima kasih sudah mengunjungi website saya.
+                Kamu bisa menghubungi atau menemukan saya
+                melalui media sosial.
+            </p>
+
+            <div class="socials">
+
+                <a href="#" class="social" aria-label="Instagram">
+                    IG
+                </a>
+
+                <a href="#" class="social" aria-label="Email">
+                    @
+                </a>
+
+                <a href="#" class="social" aria-label="WhatsApp">
+                    WA
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+        © 2026 <span>Marwa</span>. Made with passion.
+    </footer>
+
+
+    <script>
+
+        /* =========================
+           MOBILE MENU
+        ========================== */
+
+        const menuBtn = document.getElementById("menuBtn");
+        const navLinks = document.getElementById("navLinks");
+
+        menuBtn.addEventListener("click", () => {
+            navLinks.classList.toggle("active");
+        });
+
+
+        /* Close mobile menu */
+
+        document.querySelectorAll(".nav-links a").forEach(link => {
+
+            link.addEventListener("click", () => {
+                navLinks.classList.remove("active");
+            });
+
+        });
+
+
+        /* =========================
+           TYPING EFFECT
+        ========================== */
+
+        const typingText = document.getElementById("typingText");
+
+        const words = [
+            "Student",
+            "Dreamer",
+            "Explorer",
+            "Future Achiever"
+        ];
+
+        let wordIndex = 0;
+        let charIndex = 0;
+        let deleting = false;
+
+        function typeEffect() {
+
+            const currentWord = words[wordIndex];
+
+            if (!deleting) {
+
+                typingText.textContent =
+                    currentWord.substring(0, charIndex + 1);
+
+                charIndex++;
+
+                if (charIndex === currentWord.length) {
+
+                    deleting = true;
+
+                    setTimeout(typeEffect, 1500);
+                    return;
+
+                }
+
+            } else {
+
+                typingText.textContent =
+                    currentWord.substring(0, charIndex - 1);
+
+                charIndex--;
+
+                if (charIndex === 0) {
+
+                    deleting = false;
+                    wordIndex++;
+
+                    if (wordIndex >= words.length) {
+                        wordIndex = 0;
+                    }
+
+                }
+
+            }
+
+            setTimeout(typeEffect, deleting ? 60 : 100);
+        }
+
+        typeEffect();
+
+
+        /* =========================
+           SCROLL REVEAL
+        ========================== */
+
+        const revealElements =
+            document.querySelectorAll(".reveal");
+
+        const observer =
+            new IntersectionObserver((entries) => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add("show");
+
+                    }
+
+                });
+
+            }, {
+                threshold: 0.15
+            });
+
+
+        revealElements.forEach(element => {
+            observer.observe(element);
+        });
+
+
+        /* =========================
+           SKILL BAR
+        ========================== */
+
+        const skillBars =
+            document.querySelectorAll(".skill-progress");
+
+        const skillObserver =
+            new IntersectionObserver((entries) => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        const width =
+                            entry.target.getAttribute("data-width");
+
+                        entry.target.style.width = width;
+
+                    }
+
+                });
+
+            }, {
+                threshold: 0.5
+            });
+
+
+        skillBars.forEach(bar => {
+            skillObserver.observe(bar);
+        });
+
+
+        /* =========================
+           SCROLL PROGRESS
+        ========================== */
+
+        const progress =
+            document.getElementById("progress");
+
+        window.addEventListener("scroll", () => {
+
+            const scrollTop =
+                document.documentElement.scrollTop;
+
+            const scrollHeight =
+                document.documentElement.scrollHeight -
+                document.documentElement.clientHeight;
+
+            const percentage =
+                (scrollTop / scrollHeight) * 100;
+
+            progress.style.width =
+                percentage + "%";
+
+        });
+
+
+        /* =========================
+           ACTIVE NAVBAR
+        ========================== */
+
+        const sections =
+            document.querySelectorAll("section[id]");
+
+        const navItems =
+            document.querySelectorAll(".nav-links a");
+
+        window.addEventListener("scroll", () => {
+
+            let current = "";
+
+            sections.forEach(section => {
+
+                const sectionTop =
+                    section.offsetTop - 150;
+
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute("id");
+                }
+
+            });
+
+            navItems.forEach(link => {
+
+                link.classList.remove("active");
+
+                if (
+                    link.getAttribute("href") === "#" + current
+                ) {
+                    link.classList.add("active");
+                }
+
+            });
+
+        });
+
+    </script>
+
+</body>
+</html>
